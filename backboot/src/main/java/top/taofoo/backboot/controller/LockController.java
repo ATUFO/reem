@@ -66,12 +66,12 @@ public class LockController {
             return result;
         }
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (LockRecord lockRecord : lockRecords) {
             LockRecordDTO target = new LockRecordDTO();
             BeanUtils.copyProperties(lockRecord, target);
             Date date = new Date(target.getCreateTimestamp());
-            target.setCreateTime(simpleDateFormat.format(date));
+            target.setCreateTime(sdf.format(date));
             target.setStatusDescription(LockRecordStatusEnum.getDescription(lockRecord.getStatus()));
             result.add(target);
         }
